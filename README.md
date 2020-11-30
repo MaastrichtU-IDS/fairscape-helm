@@ -1,5 +1,7 @@
 # FAIRscape Helm chart
 
+[![Test Fairscape Helm Chart](https://github.com/MaastrichtU-IDS/fairscape-helm/workflows/Lint%20and%20Test%20Charts/badge.svg)](https://github.com/MaastrichtU-IDS/fairscape-helm/actions?query=workflow%3A%22Test+Fairscape+Helm+Chart%22)
+
 [![Validate Helm chart](https://github.com/MaastrichtU-IDS/fairscape-helm/workflows/Validate%20Helm%20chart/badge.svg)](https://github.com/MaastrichtU-IDS/fairscape-helm/actions?query=workflow%3A%22Validate+Helm+chart%22)
 
 Some links:
