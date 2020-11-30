@@ -33,12 +33,26 @@ To redeploy easily FAIRscape on any Kubernetes cluster.
 To run the chart in dry-run mode:
 
 ```bash
-helm install --dry-run --debug ./fairscape --set service.internalPort=8080
+helm install --dry-run --debug ./fairscape --set service.internalPort=8080 --generate-name
 ```
 
 Deploy the chart:
 
 ```bash
-helm install example ./fairscape --set service.type=NodePort
+helm install fairscape ./fairscape --set service.type=NodePort,serviceAccount.name=anyuid
+```
+
+> We override `service.type` and `serviceAccount.name` from the `values.yaml` file
+
+Upgrade the deployed chart:
+
+```bash
+helm upgrade fairscape ./fairscape --set service.type=NodePort,serviceAccount.name=anyuid
+```
+
+Uninstall the chart:
+
+```bash
+helm uninstall fairscape
 ```
 
