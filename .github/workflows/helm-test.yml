@@ -7,6 +7,7 @@ on:
     branches: [ main ]
     paths:
     - 'fairscape/**'
+    - '.github/workflows/helm-test.yml'
 
 jobs:
   lint-test:
