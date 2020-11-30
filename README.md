@@ -46,6 +46,8 @@ helm install --dry-run --debug ./fairscape --set service.internalPort=8080 --gen
 
 ### Deploy the chart
 
+Check the [`fairscape/values.yaml`](https://github.com/MaastrichtU-IDS/fairscape-helm/blob/main/fairscape/values.yaml) file to see the parameters of the chart.
+
 * Deploy the chart on **OpenShift DSRI**:
 
 ```bash
@@ -62,7 +64,7 @@ helm install fairscape ./fairscape --set service.type=NodePort,ingress.enabled=t
 
 ### Update the chart
 
-Upgrade the deployed chart:
+Upgrade the deployed chart using local source code:
 
 ```bash
 helm upgrade fairscape ./fairscape --set service.type=NodePort,serviceAccount.name=anyuid,openshiftRoute.enabled=true
