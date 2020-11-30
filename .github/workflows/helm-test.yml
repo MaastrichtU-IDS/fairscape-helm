@@ -1,4 +1,4 @@
-name: Lint and Test Charts
+name: Test Fairscape Helm Chart
 # Official Helm test workflow
 # https://github.com/marketplace/actions/helm-chart-testing
 on:
