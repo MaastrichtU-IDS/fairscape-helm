@@ -12,15 +12,33 @@ Recommended to use [Stardog](https://www.stardog.com/) (licensed triplestore) fo
   * Request academic trial: https://community.stardog.com/t/academic-license/1883/7 (use academic email)
 * Setup instructions: https://www.stardog.com/docs/#_starting_stardog
 
-## Define Helm chart
+## Defining a Helm chart
 
-https://helm.sh/
+To redeploy easily FAIRscape on any Kubernetes cluster.
+
+###  Documentation to create a [Helm](https://helm.sh/) chart
 
 * `Helm create` docs: https://helm.sh/docs/helm/helm_create/
 * Create Helm chart (Bitnami): https://docs.bitnami.com/tutorials/create-your-first-helm-chart/
 * Helm tips and trick: https://helm.sh/docs/howto/charts_tips_and_tricks/
 
-Notes:
+### How to build the Helm chart
 
-* The template parameters go to `values.yml`
-* Define multiple images in `values.yml`: https://stackoverflow.com/questions/61044345/how-to-pass-multiple-docker-images-through-values-yml-to-template-yml-in-helm
+* Define parameters go to `values.yaml` (variables and their values to be used by the templates)
+* Then the deployment is defined in `templates/deployment.yaml` and can use variables defined in `values.yaml`
+* `Charts/` folder is for external charts dependencies (if we want to define FAIRscape using multiple charts for modularity)
+
+### Install and run the chart
+
+To run the chart in dry-run mode:
+
+```bash
+helm install --dry-run --debug ./fairscape --set service.internalPort=8080
+```
+
+Deploy the chart:
+
+```bash
+helm install example ./fairscape --set service.type=NodePort
+```
+
