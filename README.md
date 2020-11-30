@@ -68,7 +68,7 @@ Upgrade the deployed chart:
 helm upgrade fairscape ./fairscape --set service.type=NodePort,serviceAccount.name=anyuid,openshiftRoute.enabled=true
 ```
 
-Uninstall the chart:
+### Uninstall the chart
 
 ```bash
 helm uninstall fairscape
@@ -76,23 +76,24 @@ helm uninstall fairscape
 
 ### Known issues
 
-Deploying OpenShift Route: https://bugzilla.redhat.com/show_bug.cgi?id=1773682
-
-cf issue: https://github.com/openshift/origin/issues/24060
-
 Helm Swagger API validation reject when we provide an empty string as host `""`
+
+* cf. deploying OpenShift Route: https://bugzilla.redhat.com/show_bug.cgi?id=1773682
+* cf issue: https://github.com/openshift/origin/issues/24060
+
+Current fix: `host` is hardcoded as `""` in the template instead of using value from `values.yaml`
+
+It was previously (in `templates/openshiftRoute.yaml`):
 
 ```yaml
 spec:
   host: {{ .Values.openshiftRoute.host }}
 ```
 
-> Current fix: `host` is hardcoded as `""` in the template instead of using value from `values.yaml`
-
 ## Setup the triplestore
 
 Recommended to use [Stardog](https://www.stardog.com/) (licensed triplestore) for its path explanation feature
 
 * Academic trial (1 year): https://www.stardog.com/academic-trial/
-  * Request academic trial: https://community.stardog.com/t/academic-license/1883/7 (use academic email)
+  * Request academic trial: https://community.stardog.com/t/academic-license/1883/7 (use an academic email)
 * Setup instructions: https://www.stardog.com/docs/#_starting_stardog
