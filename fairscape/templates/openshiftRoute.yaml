@@ -19,7 +19,7 @@ status:
     - host: ""
 spec:
   host: ""
-  path: ""
+  path: {{ .Values.openshiftRoute.path }}
   wildcardPolicy: {{ .Values.openshiftRoute.wildcardPolicy }}
   port:
     targetPort: {{ .Values.openshiftRoute.service.targetPort }}

@@ -1,16 +1,10 @@
-# FAIRscape on the Data Science Research Infrastructure
+# FAIRscape Helm chart
+
+Some links:
 
 * FAIRscape publication: https://www.biorxiv.org/content/10.1101/2020.08.10.244947v3.full.pdf
 * FAIRscape GitHub repositories: https://github.com/fairscape
-* Data Science Research Infrastructure (DSRI) documentation: https://maastrichtu-ids.github.io/dsri-documentation/
-
-## Setup the triplestore
-
-Recommended to use [Stardog](https://www.stardog.com/) (licensed triplestore) for its path explanation feature
-
-* Academic trial (1 year): https://www.stardog.com/academic-trial/
-  * Request academic trial: https://community.stardog.com/t/academic-license/1883/7 (use academic email)
-* Setup instructions: https://www.stardog.com/docs/#_starting_stardog
+* Data Science Research Infrastructure (DSRI, OpenShift cluster) documentation: https://maastrichtu-ids.github.io/dsri-documentation/
 
 ## Defining a Helm chart
 
@@ -68,7 +62,7 @@ Uninstall the chart:
 helm uninstall fairscape
 ```
 
-### Issues
+### Known issues
 
 Deploying OpenShift Route: https://bugzilla.redhat.com/show_bug.cgi?id=1773682
 
@@ -79,6 +73,14 @@ Helm Swagger API validation reject when we provide an empty string as host `""`
 ```yaml
 spec:
   host: {{ .Values.openshiftRoute.host }}
-  path: {{ .Values.openshiftRoute.path }}
 ```
 
+> Current fix: `host` is hardcoded as `""` in the template instead of using value from `values.yaml`
+
+## Setup the triplestore
+
+Recommended to use [Stardog](https://www.stardog.com/) (licensed triplestore) for its path explanation feature
+
+* Academic trial (1 year): https://www.stardog.com/academic-trial/
+  * Request academic trial: https://community.stardog.com/t/academic-license/1883/7 (use academic email)
+* Setup instructions: https://www.stardog.com/docs/#_starting_stardog
