@@ -13,6 +13,7 @@ jobs:
     steps:
     - uses: actions/checkout@master
 
+    # https://github.com/marketplace/actions/github-action-for-helm-templates-validation
     - name: Run helm check action
       uses: igabaydulin/helm-check-action@0.1.4
       env:
