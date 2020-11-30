@@ -1,5 +1,7 @@
 # FAIRscape Helm chart
 
+[![Validate Helm chart](https://github.com/MaastrichtU-IDS/fairscape-helm/workflows/Validate%20Helm%20chart/badge.svg)](https://github.com/MaastrichtU-IDS/fairscape-helm/actions?query=workflow%3A%22Validate+Helm+chart%22)
+
 Some links:
 
 * FAIRscape publication: https://www.biorxiv.org/content/10.1101/2020.08.10.244947v3.full.pdf
