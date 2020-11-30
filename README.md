@@ -28,7 +28,19 @@ To redeploy easily FAIRscape on any Kubernetes cluster.
 * Then the deployment is defined in `templates/deployment.yaml` and can use variables defined in `values.yaml`
 * `Charts/` folder is for external charts dependencies (if we want to define FAIRscape using multiple charts for modularity)
 
+TODO: define OpenShift Route in the Helm chart
+
+* cf. https://www.ibm.com/cloud/blog/deploying-helm-charts-on-openshift
+* https://artifacthub.io/packages/helm/appuio/openshift-route
+* Example `openshift-route` chart: https://github.com/appuio/charts/tree/master/openshift-route
+
 ### Install and run the chart
+
+Check if the Helm chart is properly defined:
+
+```bash
+helm lint fairscape
+```
 
 To run the chart in dry-run mode:
 
@@ -36,10 +48,10 @@ To run the chart in dry-run mode:
 helm install --dry-run --debug ./fairscape --set service.internalPort=8080 --generate-name
 ```
 
-Deploy the chart:
+Deploy the chart on OpenShift:
 
 ```bash
-helm install fairscape ./fairscape --set service.type=NodePort,serviceAccount.name=anyuid
+helm install fairscape ./fairscape --set service.type=NodePort,serviceAccount.name=anyuid,openshiftRoute.enabled=true
 ```
 
 > We override `service.type` and `serviceAccount.name` from the `values.yaml` file
@@ -47,12 +59,26 @@ helm install fairscape ./fairscape --set service.type=NodePort,serviceAccount.na
 Upgrade the deployed chart:
 
 ```bash
-helm upgrade fairscape ./fairscape --set service.type=NodePort,serviceAccount.name=anyuid
+helm upgrade fairscape ./fairscape --set service.type=NodePort,serviceAccount.name=anyuid,openshiftRoute.enabled=true
 ```
 
 Uninstall the chart:
 
 ```bash
 helm uninstall fairscape
+```
+
+### Issues
+
+Deploying OpenShift Route: https://bugzilla.redhat.com/show_bug.cgi?id=1773682
+
+cf issue: https://github.com/openshift/origin/issues/24060
+
+Helm Swagger API validation reject when we provide an empty string as host `""`
+
+```yaml
+spec:
+  host: {{ .Values.openshiftRoute.host }}
+  path: {{ .Values.openshiftRoute.path }}
 ```
 
